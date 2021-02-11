@@ -24,8 +24,8 @@
         </style>
     </head>
     <body class="antialiased">
-        <div id="test">
-            <h1>test</h1>
+        <div id="payload">
+            
         </div>
     </body>
     <script type="text/javascript" src="../js/app.js"></script>

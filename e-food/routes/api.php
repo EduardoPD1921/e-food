@@ -20,5 +20,10 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::group(['middleware' => 'auth:sanctum'], function() {
+    // Protected URL's
+    Route::get('/user/all', [UserController::class, 'returnAllUsers']);
+});
+
 Route::post('/user/register', [UserController::class, 'store']);
 Route::post('/user/login', [UserController::class, 'login']);

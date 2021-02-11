@@ -23,9 +23,9 @@ class UserController extends Controller
         }
 
         $user = new User;
-        $user->name = $request['name'];
-        $user->email = $request['email'];
-        $user->password = Hash::make($request['password']);
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = Hash::make($request->password);
         $user->save();
 
         return response('User registered', 200);
@@ -48,6 +48,20 @@ class UserController extends Controller
             return response('The provided credentials are incorrect', 400);
         }
 
-        return $user->createToken($request->password)->plainTextToken;
+        $token = $user->createToken($request->email)->plainTextToken;
+
+        $response = [
+            'user' => $user,
+            'token' => $token
+        ];
+
+        return response($response, 201);
+    }
+
+    public function returnAllUsers(Request $request) {
+
+        $users = User::all();
+
+        return response($users, 200);
     }
 }

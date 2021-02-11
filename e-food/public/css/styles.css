@@ -3,8 +3,8 @@ body {
     margin: 0;
 }
 
-/* Header */
-header {
+/* Navbar */
+nav {
     display: flex;
     flex: 1;
     flex-direction: row-reverse;
@@ -21,12 +21,12 @@ header {
     color: #ea1d2c;
 }
 
-.login-btn {
+#login-btn {
     background-color: white;
     border-width: thin;
     border-color: #ededed;
     border-radius: 4px;
-    color: black;
+    color: #ea1d2c;
     padding: 16px 32px;
     text-align: center;
     font-size: 16px;
@@ -34,13 +34,18 @@ header {
     transition: 0.1s;
 }
 
-.login-btn:hover {
+#login-btn:hover {
     background-color: #ea1d2c;
     color: white;
 }
 
 @media only screen and (max-width: 474px) {
     header {
-        font-size: 3vw;
+        font-size: 4vw;
+    }
+
+    #login-btn {
+        padding: 1.5vw 3vw;
+        font-size: 4vw;
     }
 }
