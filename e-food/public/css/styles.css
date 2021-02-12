@@ -73,7 +73,7 @@ nav {
 }
 
 #header-content h2 {
-    margin-top: 30px;
+    margin-top: 50px;
     font-size: 40px;
     color: #ea1d2c;
     font-family: 'blank-space-sketch';
@@ -105,9 +105,59 @@ nav {
 #search-input input {
     flex: 3;
     border-radius: 4px;
+    -webkit-box-shadow: 2px 3px 19px -6px rgba(122,122,122,1);
+    -moz-box-shadow: 2px 3px 19px -6px rgba(122,122,122,1);
+    box-shadow: 2px 3px 19px -6px rgba(122,122,122,1);
+    padding: 10px 10px 10px 50px;
 }
 
 #search-input button {
     flex: 1;
     margin-left: 20px;
+    background-color: #ea1d2c;
+    text-align: center;
+    color: white;
+    border-radius: 4px;
+    transition: 0.1s;
+}
+
+#search-input button:hover {
+    background-color: #c2121f;
+}
+
+#search-icon {
+    position: absolute;
+    padding: 15px;
+    font-size: 20px;
+    color: #ea1d2c;
+}
+
+@media only screen and (max-width: 980px) {
+    #header-content h2 {
+        font-size: 3vw;
+    }
+
+    #header-content h3 {
+        font-size: 3vw;
+    }
+
+    #header-content h5 {
+        font-size: 2vw;
+    }
+}
+
+@media only screen and (max-width: 1178px) {
+    #search-input {
+        flex-direction: column;
+    }
+
+    #search-input input {
+        flex: 1;
+    }
+
+    #search-input button {
+        flex: 1;
+        padding: 10px;
+        margin: 10px 0 0 0;
+    }
 }
