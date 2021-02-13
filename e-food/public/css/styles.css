@@ -161,3 +161,33 @@ nav {
         margin: 10px 0 0 0;
     }
 }
+
+@media only screen and (max-width: 830px) {
+    #search-input input {
+        height: 3vw;
+    }
+
+    #search-input button {
+        padding: 0;
+    }
+
+    ::-moz-placeholder {
+        font-size: 1.5vw;
+    }
+
+    #search-icon {
+        font-size: 15px;
+        padding: 5px 0 0 20px;
+    }
+}
+
+@media only screen and (max-width: 492px) {
+    #search-input input {
+        padding: 10px 10px 10px 20px;
+    }
+
+    #search-icon {
+        font-size: 10px;
+        padding: 5px 0 0 5px;
+    }
+}
