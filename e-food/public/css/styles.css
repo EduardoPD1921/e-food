@@ -191,3 +191,9 @@ nav {
         padding: 5px 0 0 5px;
     }
 }
+
+@media only screen and (max-width: 450px) {
+    ::-moz-placeholder {
+        font-size: 1.8vw;
+    }
+}

@@ -24,7 +24,7 @@
         </style>
     </head>
     <body class="antialiased">
-        <div id="payload">
+        <div id="login-content">
             
         </div>
     </body>
