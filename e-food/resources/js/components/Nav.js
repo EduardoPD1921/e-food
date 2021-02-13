@@ -1,9 +1,15 @@
 import React from 'react'
 
-const Nav = props => {
+const Nav = ({ mainPage }) => {
+    const renderLoginButton = () => {
+        if (mainPage === true) {
+            return <a href="/login" id="login-btn"><span>Entrar</span></a>
+        }
+    }
+
     return (
         <nav>
-            <a href="/login" id="login-btn"><span>Entrar</span></a>
+            {renderLoginButton()}
             <a href="#" className="header-item">payload</a>
             <a href="#" className="header-item">payload</a>
             <a href="#" className="header-item">payload</a>
