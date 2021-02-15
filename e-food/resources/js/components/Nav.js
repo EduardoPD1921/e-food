@@ -12,7 +12,7 @@ const Nav = ({ mainPage }) => {
             {renderLoginButton()}
             <a href="#" className="header-item">payload</a>
             <a href="#" className="header-item">payload</a>
-            <a href="#" className="header-item">payload</a>
+            <a href="/" className="header-item">Home</a>
         </nav>
     )
 }

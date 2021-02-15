@@ -12,14 +12,12 @@ class UserController extends Controller
 {
     public function store(Request $request) {
 
-        $validator = Validator::make($request->all(), [
-            'name' => 'required',
-            'email' => 'required|email|unique:users',
-            'password' => 'required'
+        $emailValidator = Validator::make($request->email, [
+            'email' => 'required|email|unique:users'
         ]);
 
-        if ($validator->fails()) {
-            return response('Invalid inputs', 400);
+        if ($emailValidator->fails()) {
+            return response('Invalid email', 400);
         }
 
         $user = new User;
