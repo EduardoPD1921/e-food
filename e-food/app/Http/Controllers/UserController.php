@@ -19,10 +19,9 @@ class UserController extends Controller
         ]);
 
         if ($validator->fails()) {
-            $failedRules = $validator->failed();
-
             $error = $validator->errors();
-            return $error;
+            
+            return response($error, 400);
         }
 
         // if ($validator->fails()) {

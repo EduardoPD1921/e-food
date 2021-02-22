@@ -28,6 +28,7 @@ nav {
     display: flex;
     flex: 1;
     justify-content: flex-end;
+    align-items: center;
 }
 
 .nav-left-align {
@@ -309,6 +310,10 @@ input:focus {
     /* -webkit-box-shadow: 3px 10px 28px -11px rgba(0,0,0,0.75);
     -moz-box-shadow: 3px 10px 28px -11px rgba(0,0,0,0.75);
     box-shadow: 3px 10px 28px -11px rgba(0,0,0,0.75); */
+}
+
+.loading-animation {
+    margin-top: 20px;
 }
 
 .form-input:focus {
