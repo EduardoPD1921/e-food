@@ -9,10 +9,15 @@ const Nav = ({ mainPage }) => {
 
     return (
         <nav>
-            {renderLoginButton()}
-            <a href="#" className="header-item">payload</a>
-            <a href="#" className="header-item">payload</a>
-            <a href="/" className="header-item">Home</a>
+            <div className="nav-left-align">
+                <a href="/" className="header-item nav-logo">E-food</a>
+            </div>
+            <div className="nav-right-align">
+                <a href="/" className="header-item">Home</a>
+                <a href="#" className="header-item">payload</a>
+                <a href="#" className="header-item">payload</a>
+                {renderLoginButton()}
+            </div>
         </nav>
     )
 }

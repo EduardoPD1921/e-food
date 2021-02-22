@@ -20,8 +20,24 @@ html, body {
 nav {
     display: flex;
     flex: 1;
-    flex-direction: row-reverse;
+    flex-direction: row;
     font-size: 20px;
+}
+
+.nav-right-align {
+    display: flex;
+    flex: 1;
+    justify-content: flex-end;
+}
+
+.nav-left-align {
+    display: flex;
+    flex: 1;
+    align-items: center;
+}
+
+.nav-logo {
+    font-size: 30px;
 }
 
 .header-item {
@@ -52,9 +68,38 @@ nav {
     color: white;
 }
 
-@media only screen and (max-width: 474px) {
+/* @media only screen and (max-width: 474px) {
     nav {
         font-size: 4vw;
+    }
+
+    #login-btn {
+        padding: 1.5vw 3vw;
+        font-size: 4vw;
+    }
+} */
+
+@media only screen and (max-width: 584px) {
+    nav {
+        flex-direction: column;
+    }
+
+    .nav-left-align {
+        justify-content: center;
+    }
+
+    .nav-right-align {
+        justify-content: center;
+    }
+}
+
+@media only screen and (max-width: 448px) {
+    nav {
+        font-size: 4vw;
+    }
+
+    .nav-logo {
+        font-size: 5vw;
     }
 
     #login-btn {
@@ -133,6 +178,10 @@ nav {
     padding: 15px;
     font-size: 20px;
     color: #ea1d2c;
+}
+
+input:focus {
+    outline: none;
 }
 
 @media only screen and (max-width: 980px) {
