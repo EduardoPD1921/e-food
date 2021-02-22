@@ -43,7 +43,7 @@ class UserController extends Controller
         $user->password = Hash::make($request->password);
         $user->save();
 
-        return response('User registered', 200);
+        return response($user, 200);
     }
 
     public function login(Request $request) {

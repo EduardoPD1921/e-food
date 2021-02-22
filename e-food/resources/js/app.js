@@ -2,16 +2,16 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 
 import MainPage from './pages/MainPage'
-import LoginPage from './pages/LoginPage'
+import LoginPage from './pages/RegisterPage'
 
 const maincontent = document.getElementById('maincontent')
-const logincontent = document.getElementById('login-content')
+const registercontent = document.getElementById('register-content')
 
 if (maincontent) {
     ReactDOM.render(<MainPage />, document.getElementById('maincontent'))
 }
 
-if (logincontent) {
-    ReactDOM.render(<LoginPage />, document.getElementById('login-content'))
+if (registercontent) {
+    ReactDOM.render(<LoginPage />, document.getElementById('register-content'))
 }
 

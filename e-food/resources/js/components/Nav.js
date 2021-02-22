@@ -3,7 +3,7 @@ import React from 'react'
 const Nav = ({ mainPage }) => {
     const renderLoginButton = () => {
         if (mainPage === true) {
-            return <a href="/login" id="login-btn"><span>Entrar</span></a>
+            return <a href="/register" id="login-btn"><span>Entrar</span></a>
         }
     }
 

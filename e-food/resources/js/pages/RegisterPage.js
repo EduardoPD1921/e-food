@@ -9,13 +9,13 @@ import Snackbar from '@material-ui/core/Snackbar'
 import MuiAlert from '@material-ui/lab/Alert'
 
 
-import illustration from '../../../public/images/loginIllustration.png'
+import illustration from '../../../public/images/registerIllustration.png'
 
 function Alert(props) {
     return <MuiAlert elevation={6} variant="filled" {...props} />
 }
 
-class LoginPage extends React.Component {
+class RegisterPage extends React.Component {
     constructor(props) {
         super(props)
 
@@ -23,6 +23,7 @@ class LoginPage extends React.Component {
             name: '',
             email: '',
             password: '',
+            errorMessage: '',
             isLoading: false,
             isSnackbarOpen: false
         }
@@ -49,10 +50,10 @@ class LoginPage extends React.Component {
             data: data
         }).then(resp => {
             console.log(resp)
-            this.setState({ isLoading: false, isSnackbarOpen: true })
+            this.setState({ isLoading: false, isSnackbarOpen: true, errorMessage: '' })
         })
         .catch(error => {
-            console.log(error.response.data)
+            this.errorHandler(error.response.data)
             this.setState({ isLoading: false })
         })
     }
@@ -73,6 +74,34 @@ class LoginPage extends React.Component {
         this.setState({ isSnackbarOpen: false })
     }
 
+    errorHandler(error) {
+        this.setState({ errorMessage: this.getErrorMessageByType(error)})
+    }
+
+    getErrorMessageByType(error) {
+        if (error.name) {
+            return error.name[0]
+        }
+
+        if (error.email) {
+            return error.email[0]
+        }
+
+        if (error.password) {
+            return error.password[0]
+        }
+    }
+
+    renderErrorMessage() {
+        if (this.state.errorMessage) {
+            return (
+                <ul>
+                    <li>{this.state.errorMessage}</li>
+                </ul>
+            )
+        }
+    }
+
     render() {
         return (
             <div className="container-fluid">
@@ -82,17 +111,19 @@ class LoginPage extends React.Component {
                     </Alert>
                 </Snackbar>
                 <Nav />
-                <div className="login-page-content">
+                <div className="register-page-content">
                     <div className="content-illustration">
                         <img className="img-fluid" src={illustration}></img>
                     </div>
-                    <div className="login-form">
-                        <div className="login-inputs">
-                            <span>Falta pouco para matar sua fome!</span>
+                    <div className="register-form">
+                        <div className="register-inputs">
+                            <span className="form-slogan">Falta pouco para matar sua fome!</span>
                             <input onChange={e => this.onChangeTextHandler(e, 'name')} className="form-input form-content" type="text" placeholder="Nome"></input>
                             <input onChange={e => this.onChangeTextHandler(e, 'email')} className="form-input form-content" type="text" placeholder="Email"></input>
                             <input onChange={e => this.onChangeTextHandler(e, 'password')} className="form-input form-content" type="password" placeholder="Senha"></input>
                             {this.renderLoading()}
+                            {this.renderErrorMessage()}
+                            <p>Já possui uma conta? <a href="/login" id="already-has-account">Faça login!</a></p>
                         </div>
                     </div>
                 </div>
@@ -101,4 +132,4 @@ class LoginPage extends React.Component {
     }
 }
 
-export default LoginPage
+export default RegisterPage
