@@ -9,7 +9,7 @@ import Snackbar from '@material-ui/core/Snackbar'
 import MuiAlert from '@material-ui/lab/Alert'
 
 
-import illustration from '../../../public/images/registerIllustration.png'
+import illustration from '../../../public/images/deliver.png'
 
 function Alert(props) {
     return <MuiAlert elevation={6} variant="filled" {...props} />

@@ -9451,7 +9451,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _material_ui_core_CircularProgress__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @material-ui/core/CircularProgress */ "./node_modules/@material-ui/core/esm/CircularProgress/CircularProgress.js");
 /* harmony import */ var _material_ui_core_Snackbar__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @material-ui/core/Snackbar */ "./node_modules/@material-ui/core/esm/Snackbar/Snackbar.js");
 /* harmony import */ var _material_ui_lab_Alert__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @material-ui/lab/Alert */ "./node_modules/@material-ui/lab/esm/Alert/Alert.js");
-/* harmony import */ var _public_images_registerIllustration_png__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../public/images/registerIllustration.png */ "./public/images/registerIllustration.png");
+/* harmony import */ var _public_images_deliver_png__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../public/images/deliver.png */ "./public/images/deliver.png");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
@@ -9649,7 +9649,7 @@ var RegisterPage = /*#__PURE__*/function (_React$Component) {
             className: "content-illustration",
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("img", {
               className: "img-fluid",
-              src: _public_images_registerIllustration_png__WEBPACK_IMPORTED_MODULE_3__.default
+              src: _public_images_deliver_png__WEBPACK_IMPORTED_MODULE_3__.default
             })
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
             className: "register-form",
@@ -10348,10 +10348,10 @@ function supportedValue(property, value) {
 
 /***/ }),
 
-/***/ "./public/images/registerIllustration.png":
-/*!************************************************!*\
-  !*** ./public/images/registerIllustration.png ***!
-  \************************************************/
+/***/ "./public/images/deliver.png":
+/*!***********************************!*\
+  !*** ./public/images/deliver.png ***!
+  \***********************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -10359,7 +10359,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("/images/registerIllustration.png?cf64e5243d6befcb786ff164e017c78f");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("/images/deliver.png?c41b6fca5610188185feea09efdf2f72");
 
 /***/ }),
 

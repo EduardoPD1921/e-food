@@ -290,7 +290,7 @@ input:focus {
 
 .form-slogan {
     margin: 20px;
-    width: 50%;
+    width: 60%;
     font-size: 30px;
     font-weight: 700;
     color: #414143;
@@ -340,4 +340,35 @@ ul {
 
 .form-submit-button:hover {
     background-color: #c2121f;
+}
+
+@media only screen and (max-width: 1672px) {
+    .form-slogan {
+        font-size: 1.2vw;
+    }
+
+    .form-content {
+        width: 60%;
+        padding: 10px;
+    }
+}
+
+@media only screen and (max-width: 1220px) {
+    .form-slogan {
+        font-size: 1.5vw;
+    }
+
+    .register-page-content {
+        flex-direction: column;
+    }
+
+    .img-fluid {
+        width: 40%;
+        margin: 40px;
+    }
+
+    .register-inputs {
+        margin: 40px;
+        text-align: center;
+    }
 }
