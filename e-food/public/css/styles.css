@@ -282,7 +282,8 @@ input:focus {
     align-items: center;
     border-radius: 8px;
     width: 50%;
-    height: 65% ;
+    height: 65%;
+    text-align: center;
     -webkit-box-shadow: 2px 3px 19px -6px rgba(122,122,122,1);
     -moz-box-shadow: 2px 3px 19px -6px rgba(122,122,122,1);
     box-shadow: 2px 3px 19px -6px rgba(122,122,122,1);
@@ -355,7 +356,7 @@ ul {
 
 @media only screen and (max-width: 1220px) {
     .form-slogan {
-        font-size: 1.5vw;
+        font-size: 3vw;
     }
 
     .register-page-content {
@@ -369,6 +370,32 @@ ul {
 
     .register-inputs {
         margin: 40px;
-        text-align: center;
     }
+}
+
+@media only screen and (max-width: 492px) {
+    .form-content {
+        height: 10px;
+    }
+
+    .form-input {
+        margin: 15px 0 0 0;
+    }
+
+    p {
+        font-size: 2vw;
+    }
+
+    ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+        font-size: 8px;
+      }
+      ::-moz-placeholder { /* Firefox 19+ */
+        font-size: 8px;
+      }
+      :-ms-input-placeholder { /* IE 10+ */
+        font-size: 8px;
+      }
+      :-moz-placeholder { /* Firefox 18- */
+        font-size: 8px;
+      }
 }
