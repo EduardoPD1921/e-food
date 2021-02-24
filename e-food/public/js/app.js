@@ -17673,7 +17673,6 @@ var LoginInput = function LoginInput(props) {
         onChange: function onChange(e) {
           return props.onChangeTextHandler(e, 'email');
         },
-        id: "email-input",
         label: "Email"
       });
     }
@@ -17683,12 +17682,12 @@ var LoginInput = function LoginInput(props) {
       onChange: function onChange(e) {
         return props.onChangeTextHandler(e, 'password');
       },
-      id: "password-input",
       label: "Senha"
     });
   };
 
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_5__.default, {
+    className: "login-form-input",
     container: true,
     spacing: 1,
     alignItems: "flex-end",
@@ -17853,8 +17852,9 @@ var LoginPage = /*#__PURE__*/function (_React$Component) {
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
             className: "login-form",
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_icons_AccountCircle__WEBPACK_IMPORTED_MODULE_4__.default, {
+              className: "user-img",
               style: {
-                fontSize: 60,
+                fontSize: 100,
                 color: _material_ui_core_colors__WEBPACK_IMPORTED_MODULE_5__.default[600]
               }
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_components_LoginInput__WEBPACK_IMPORTED_MODULE_2__.default, {
@@ -17862,6 +17862,9 @@ var LoginPage = /*#__PURE__*/function (_React$Component) {
               email: true
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_components_LoginInput__WEBPACK_IMPORTED_MODULE_2__.default, {
               onChangeTextHandler: this.onChangeTextHandler
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
+              className: "login-form-submit",
+              children: "Login"
             })]
           })
         })]

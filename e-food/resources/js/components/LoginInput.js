@@ -15,14 +15,14 @@ const LoginInput = props => {
 
     const renderTextInput = () => {
         if (props.email) {
-            return <TextField type="text" onChange={e => props.onChangeTextHandler(e, 'email')} id="email-input" label="Email" />
+            return <TextField type="text" onChange={e => props.onChangeTextHandler(e, 'email')} label="Email" />
         }
 
-        return <TextField type="password" onChange={e => props.onChangeTextHandler(e, 'password')} id="password-input" label="Senha" />
+        return <TextField type="password" onChange={e => props.onChangeTextHandler(e, 'password')} label="Senha" />
     }
 
     return (
-        <Grid container spacing={1} alignItems="flex-end">
+        <Grid className="login-form-input" container spacing={1} alignItems="flex-end">
             <Grid item>
                 {renderIcon()}
             </Grid>

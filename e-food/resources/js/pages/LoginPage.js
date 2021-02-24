@@ -30,9 +30,10 @@ class LoginPage extends React.Component {
                 <Nav />
                 <section className="main-content">
                     <div className="login-form">
-                        <AccountCircleIcon style={{ fontSize: 60, color: red[600] }} />
+                        <AccountCircleIcon className="user-img" style={{ fontSize: 100, color: red[600] }} />
                         <LoginInput onChangeTextHandler={this.onChangeTextHandler} email />
                         <LoginInput onChangeTextHandler={this.onChangeTextHandler} />
+                        <button className="login-form-submit">Login</button>
                     </div>
                 </section>
             </div>
