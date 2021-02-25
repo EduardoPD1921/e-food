@@ -15,6 +15,8 @@ function Alert(props) {
     return <MuiAlert elevation={6} variant="filled" {...props} />
 }
 
+// let history = useHistory()
+
 class RegisterPage extends React.Component {
     constructor(props) {
         super(props)
