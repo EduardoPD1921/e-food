@@ -105,7 +105,7 @@ class RegisterPage extends React.Component {
     render() {
         return (
             <div className="container-fluid">
-                <Snackbar open={this.state.isSnackbarOpen} autoHideDuration={6000} onClose={() => this.onCloseSnackbar}>
+                <Snackbar open={this.state.isSnackbarOpen} autoHideDuration={6000} onClose={(event, reason) => this.onCloseSnackbar(event, reason)}>
                     <Alert onClose={() => this.onCloseSnackbar()} severity="success">
                         Conta criada com sucesso!
                     </Alert>

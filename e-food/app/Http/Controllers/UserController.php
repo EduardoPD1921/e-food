@@ -43,7 +43,7 @@ class UserController extends Controller
         $user->password = Hash::make($request->password);
         $user->save();
 
-        return response($user, 200);
+        return response($user, 201);
     }
 
     public function login(Request $request) {
@@ -54,7 +54,9 @@ class UserController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return response('Invalid inputs', 400);
+            $error = $validator->errors();
+
+            return response($error, 400);
         }
 
         $user = User::where('email', $request->email)->first();

@@ -17780,14 +17780,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var _material_ui_icons_AccountCircle__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @material-ui/icons/AccountCircle */ "./node_modules/@material-ui/icons/AccountCircle.js");
-/* harmony import */ var _material_ui_core_colors__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @material-ui/core/colors */ "./node_modules/@material-ui/core/esm/colors/red.js");
-/* harmony import */ var _components_Nav__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/Nav */ "./resources/js/components/Nav.js");
-/* harmony import */ var _components_LoginInput__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/LoginInput */ "./resources/js/components/LoginInput.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _material_ui_icons_AccountCircle__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @material-ui/icons/AccountCircle */ "./node_modules/@material-ui/icons/AccountCircle.js");
+/* harmony import */ var _material_ui_core_CircularProgress__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @material-ui/core/CircularProgress */ "./node_modules/@material-ui/core/esm/CircularProgress/CircularProgress.js");
+/* harmony import */ var _material_ui_core_Snackbar__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @material-ui/core/Snackbar */ "./node_modules/@material-ui/core/esm/Snackbar/Snackbar.js");
+/* harmony import */ var _material_ui_lab_Alert__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @material-ui/lab/Alert */ "./node_modules/@material-ui/lab/esm/Alert/Alert.js");
+/* harmony import */ var _material_ui_core_colors__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @material-ui/core/colors */ "./node_modules/@material-ui/core/esm/colors/red.js");
+/* harmony import */ var _components_Nav__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/Nav */ "./resources/js/components/Nav.js");
+/* harmony import */ var _components_LoginInput__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/LoginInput */ "./resources/js/components/LoginInput.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -17809,6 +17812,11 @@ function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Re
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 
 
@@ -17816,6 +17824,18 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
+
+
+
+
+
+
+function Alert(props) {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_material_ui_lab_Alert__WEBPACK_IMPORTED_MODULE_5__.default, _objectSpread({
+    elevation: 6,
+    variant: "filled"
+  }, props));
+}
 
 var LoginPage = /*#__PURE__*/function (_React$Component) {
   _inherits(LoginPage, _React$Component);
@@ -17831,7 +17851,9 @@ var LoginPage = /*#__PURE__*/function (_React$Component) {
     _this.state = {
       email: '',
       password: '',
-      isLoading: false
+      errorMessage: '',
+      isLoading: false,
+      isSnackbarOpen: false
     };
     _this.onChangeTextHandler = _this.onChangeTextHandler.bind(_assertThisInitialized(_this));
     return _this;
@@ -17843,28 +17865,93 @@ var LoginPage = /*#__PURE__*/function (_React$Component) {
       this.setState(_defineProperty({}, type, event.target.value));
     }
   }, {
+    key: "onSubmitLoginFormHandler",
+    value: function onSubmitLoginFormHandler() {
+      this.setState({
+        isLoading: true
+      });
+      var data = {
+        email: this.state.email,
+        password: this.state.password
+      };
+      axios__WEBPACK_IMPORTED_MODULE_1___default()({
+        method: 'POST',
+        url: 'http://127.0.0.1:8000/api/user/login',
+        data: data
+      }).then(function (resp) {
+        return console.log(resp);
+      })["catch"](function (error) {
+        return console.log(error.response);
+      });
+    }
+  }, {
+    key: "onCloseSnackbar",
+    value: function onCloseSnackbar(event, reason) {
+      if (reason === 'clickaway') {
+        return;
+      }
+
+      this.setState({
+        isSnackbarOpen: false
+      });
+    }
+  }, {
+    key: "renderLoading",
+    value: function renderLoading() {
+      if (this.state.isLoading) {
+        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_material_ui_core_CircularProgress__WEBPACK_IMPORTED_MODULE_6__.default, {
+          style: {
+            color: _material_ui_core_colors__WEBPACK_IMPORTED_MODULE_7__.default[800],
+            fontSize: 5
+          }
+        });
+      }
+
+      return 'Login';
+    }
+  }, {
     key: "render",
     value: function render() {
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+      var _this2 = this;
+
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
         className: "container-fluid",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_components_Nav__WEBPACK_IMPORTED_MODULE_1__.default, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("section", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_material_ui_core_Snackbar__WEBPACK_IMPORTED_MODULE_8__.default, {
+          open: this.state.isSnackbarOpen,
+          autoHideDuration: 6000,
+          onClose: function onClose(event, reason) {
+            return _this2.onCloseSnackbar(event, reason);
+          },
+          onRequestClose: true,
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(Alert, {
+            onClose: function onClose() {
+              return _this2.onCloseSnackbar();
+            },
+            severity: "error",
+            children: "Credenciais inv\xE1lidas!"
+          })
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_components_Nav__WEBPACK_IMPORTED_MODULE_2__.default, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("section", {
           className: "main-content",
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
             className: "login-form",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_material_ui_icons_AccountCircle__WEBPACK_IMPORTED_MODULE_4__.default, {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_material_ui_icons_AccountCircle__WEBPACK_IMPORTED_MODULE_9__.default, {
               className: "user-img",
               style: {
                 fontSize: 100,
-                color: _material_ui_core_colors__WEBPACK_IMPORTED_MODULE_5__.default[600]
+                color: _material_ui_core_colors__WEBPACK_IMPORTED_MODULE_7__.default[600]
               }
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_components_LoginInput__WEBPACK_IMPORTED_MODULE_2__.default, {
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_components_LoginInput__WEBPACK_IMPORTED_MODULE_3__.default, {
               onChangeTextHandler: this.onChangeTextHandler,
               email: true
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_components_LoginInput__WEBPACK_IMPORTED_MODULE_2__.default, {
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_components_LoginInput__WEBPACK_IMPORTED_MODULE_3__.default, {
               onChangeTextHandler: this.onChangeTextHandler
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
+              onClick: function onClick() {
+                return _this2.onSubmitLoginFormHandler();
+              },
+              disabled: this.state.isLoading,
               className: "login-form-submit",
-              children: "Login"
+              children: this.renderLoading()
             })]
           })
         })]
@@ -18156,8 +18243,8 @@ var RegisterPage = /*#__PURE__*/function (_React$Component) {
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_material_ui_core_Snackbar__WEBPACK_IMPORTED_MODULE_7__.default, {
           open: this.state.isSnackbarOpen,
           autoHideDuration: 6000,
-          onClose: function onClose() {
-            return _this4.onCloseSnackbar;
+          onClose: function onClose(event, reason) {
+            return _this4.onCloseSnackbar(event, reason);
           },
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(Alert, {
             onClose: function onClose() {
