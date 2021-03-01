@@ -6,7 +6,7 @@ import MainPage from '../pages/MainPage'
 import RegisterPage from '../pages/RegisterPage'
 import LoginPage from '../pages/LoginPage'
 
-const ReactRouter = props => {
+const Routes = props => {
     return (
         <Router>
             <Switch>
@@ -18,8 +18,4 @@ const ReactRouter = props => {
     )
 }
 
-export default ReactRouter
-
-if (document.getElementById('app')) {
-    ReactDOM.render(<ReactRouter />, document.getElementById('app'))
-}
+export default Routes

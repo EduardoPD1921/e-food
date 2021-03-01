@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useContext } from 'react'
 import axios from 'axios'
 import AccountCircleIcon from '@material-ui/icons/AccountCircle'
 import CircularProgress from '@material-ui/core/CircularProgress'
@@ -9,68 +9,76 @@ import { red } from '@material-ui/core/colors'
 import Nav from '../components/Nav'
 import LoginInput from '../components/LoginInput'
 
+import AuthContext from '../AuthContext'
+
 function Alert(props) {
     return <MuiAlert elevation={6} variant="filled" {...props} />
 }
 
-class LoginPage extends React.Component {
-    constructor(props) {
-        super(props)
+function LoginPage(props) {
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+    const [isLoading, setIsLoading] = useState(false)
+    const [isSnackbarOpen, setIsSnackbarOpen] = useState(false)
 
-        this.state = {
-            email: '',
-            password: '',
-            errorMessage: '',
-            isLoading: false,
-            isSnackbarOpen: false
+    const context = useContext(AuthContext)
+    console.log(context)
+
+    const onChangeTextHandler = (event, type) => {
+        switch(type) {
+            case 'email':
+                setEmail(event.target.value)
+                break
+            case 'password':
+                setPassword(event.target.value)
+                break
         }
-
-        this.onChangeTextHandler = this.onChangeTextHandler.bind(this)
     }
 
-    onChangeTextHandler(event, type) {
-        this.setState({
-            [type]: event.target.value
-        })
-    }
-
-    onSubmitLoginFormHandler() {
-        this.setState({ isLoading: true })
+    const onSubmitLoginFormHandler = () => {
+        setIsLoading(true)
 
         const data = {
-            email: this.state.email,
-            password: this.state.password
+            email: email,
+            password: password
         }
 
         axios({
             method: 'POST',
             url: 'http://127.0.0.1:8000/api/user/login',
             data: data
-        }).then(resp => console.log(resp))
-        .catch(error => console.log(error.response))
+        }).then(resp => {
+            setIsLoading(false)
+
+            console.log(resp)
+        })
+        .catch(error => {
+            setIsLoading(false)
+
+            console.log(error.response)
+        })
     }
 
-    onCloseSnackbar(event, reason) {
+    const onCloseSnackbar = (event, reason) => {
         if (reason === 'clickaway') {
             return
         }
 
-        this.setState({ isSnackbarOpen: false })
+        setIsSnackbarOpen(false)
     }
 
-    renderLoading() {
-        if (this.state.isLoading) {
-            return <CircularProgress style={{ color: red[800], fontSize: 5 }} />
+    const renderLoading = () => {
+        if (isLoading) {
+            return <CircularProgress style={{ color: red[700], fontSize: 5 }} />
         }
 
         return 'Login'
     }
 
-    render() {
-        return (
-            <div className="container-fluid">
-                <Snackbar open={this.state.isSnackbarOpen}  autoHideDuration={6000} onClose={(event, reason) => this.onCloseSnackbar(event, reason)} onRequestClose>
-                    <Alert onClose={() => this.onCloseSnackbar()} severity="error">
+    return (
+        <div className="container-fluid">
+                <Snackbar open={isSnackbarOpen}  autoHideDuration={6000} onClose={(event, reason) => onCloseSnackbar(event, reason)}>
+                    <Alert onClose={() => onCloseSnackbar()} severity="error">
                         Credenciais inválidas!
                     </Alert>
                 </Snackbar>
@@ -78,19 +86,19 @@ class LoginPage extends React.Component {
                 <section className="main-content">
                     <div className="login-form">
                         <AccountCircleIcon className="user-img" style={{ fontSize: 100, color: red[600] }} />
-                        <LoginInput onChangeTextHandler={this.onChangeTextHandler} email />
-                        <LoginInput onChangeTextHandler={this.onChangeTextHandler} />
+                        <LoginInput onChangeTextHandler={onChangeTextHandler} email />
+                        <LoginInput onChangeTextHandler={onChangeTextHandler} />
                         <button 
-                            onClick={() => this.onSubmitLoginFormHandler()}
-                            disabled={this.state.isLoading} 
+                            onClick={() => onSubmitLoginFormHandler()}
+                            disabled={isLoading} 
                             className="login-form-submit">
-                            {this.renderLoading()}
+                            {renderLoading()}
                         </button>
                     </div>
                 </section>
             </div>
-        )
-    }
+    )
 }
+
 
 export default LoginPage

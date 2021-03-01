@@ -21,4 +21,4 @@
 //     ReactDOM.render(<LoginPage />, document.getElementById('login-content'))
 // }
 
-require('./components/ReactRouter')
+require('./ReactRoutes')

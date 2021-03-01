@@ -16,6 +16,14 @@ html, body {
     margin: 0;
 }
 
+body.antialiased {
+    height: 100%;
+}
+
+#app {
+    height: 100%;
+}
+
 /* Navbar */
 nav {
     display: flex;
@@ -68,17 +76,6 @@ nav {
     background-color: #ea1d2c;
     color: white;
 }
-
-/* @media only screen and (max-width: 474px) {
-    nav {
-        font-size: 4vw;
-    }
-
-    #login-btn {
-        padding: 1.5vw 3vw;
-        font-size: 4vw;
-    }
-} */
 
 @media only screen and (max-width: 584px) {
     nav {
@@ -365,11 +362,15 @@ ul {
 
     .img-fluid {
         width: 40%;
-        margin: 40px;
     }
 
     .register-inputs {
         margin: 40px;
+        height: 90%;
+    }
+
+    .content-illustration {
+        margin: 0;
     }
 }
 
@@ -401,14 +402,6 @@ ul {
 }
 
 /* LoginPage */
-body.antialiased {
-    height: 100%;
-}
-
-#login-content {
-    height: 100%;
-}
-
 .container-fluid {
     height: 100%;
 }
