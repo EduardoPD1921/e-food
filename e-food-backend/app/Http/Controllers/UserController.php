@@ -25,19 +25,6 @@ class UserController extends Controller
             return response($error, 400);
         }
 
-        // if ($validator->fails()) {
-        //     $failedRules = $validator->failed();
-
-        //     switch($failedRules) {
-        //         case isset($failedRules['name']):
-        //             return response('invalid name', 400);
-        //         case isset($failedRules['email']):
-        //             return response('invalid email', 400);
-        //         case isset($failedRules['password']):
-        //             return response('invalid password', 400);
-        //     }
-        // }
-
         $user = new User;
         $user->name = $request->name;
         $user->email = $request->email;
