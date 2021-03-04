@@ -27,7 +27,10 @@ Route::group(['middleware' => 'auth:sanctum'], function() {
     Route::get('/user/all', [UserController::class, 'returnAllUsers']);
 });
 
+// UserController
 Route::post('/user/register', [UserController::class, 'store']);
 Route::post('/user/login', [UserController::class, 'login']);
+
+// RestaurantController
 Route::post('/restaurant/register', [RestaurantController::class, 'store']);
 Route::post('/restaurant/login', [RestaurantController::class, 'login']);
