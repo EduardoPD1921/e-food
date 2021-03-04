@@ -10,4 +10,8 @@ class Restaurant extends Model
     use HasFactory;
 
     public $timestamps = false;
+
+    protected $hidden = [
+        'password'
+    ];
 }
