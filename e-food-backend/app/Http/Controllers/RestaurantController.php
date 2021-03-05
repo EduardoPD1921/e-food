@@ -62,11 +62,11 @@ class RestaurantController extends Controller
         $restaurant = Restaurant::where('email', $request->email)->first();
 
         if (!$restaurant) {
-            return response('Email not found', 400);
+            return response('email-not-found', 400);
         }
 
         if (!Hash::check($request->password, $restaurant->password)) {
-            return response('Wrong password', 400);
+            return response('wrong-password', 400);
         }
 
         $token = $restaurant->createToken($request->email)->plainTextToken;
