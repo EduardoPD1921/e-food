@@ -78,4 +78,11 @@ class RestaurantController extends Controller
 
         return response($response, 201);
     }
+
+    public function allRestaurants() {
+        
+        $restaurants = Restaurant::all();
+
+        return response($restaurants, 200);
+    }
 }

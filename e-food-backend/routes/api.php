@@ -34,3 +34,4 @@ Route::post('/user/login', [UserController::class, 'login']);
 // RestaurantController
 Route::post('/restaurant/register', [RestaurantController::class, 'store']);
 Route::post('/restaurant/login', [RestaurantController::class, 'login']);
+Route::get('/restaurant/all', [RestaurantController::class, 'allRestaurants']);
