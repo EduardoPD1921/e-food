@@ -21,7 +21,8 @@ class RestaurantController extends Controller
             'cep' => 'required|string',
             'city' => 'required|string',
             'state' => 'required|string',
-            'phone_number' => 'required|string'
+            'phone_number' => 'required|string',
+            'image' => 'required|string'
         ]);
 
         if ($validator->fails()) {
@@ -29,6 +30,29 @@ class RestaurantController extends Controller
 
             return response($error, 400);
         }
+
+        if (!$request->hasFile('image')) {
+            return response('image-required', 400);
+        }
+
+        if (!$request->file('image')->isValid()) {
+            return response('image-invalid', 400);
+        }
+
+        $file = $request->file('image');
+        $file_path = $file->getPath();
+
+        $client = new \GuzzleHttp\Client();
+
+        $response = $client->request('POST', 'https://api.imgur.com/3/image', [
+            'headers' => [
+                'authorization' => 'Client-ID ' . '12b39ff7d6488d1',
+                'content-type' => 'application/x-www-form-urlencoded'
+            ],
+            'form-params' => base64_encode(file_get_contents($request->file('image')->path($file_path)))
+        ]);
+
+        $imageLink = data_get(response()->json(json_decode(($response->getBody()->getContents())))->getData(), 'data.link');
 
         $restaurant = new Restaurant;
         $restaurant->email = $request->email;
@@ -40,6 +64,7 @@ class RestaurantController extends Controller
         $restaurant->city = $request->city;
         $restaurant->state = $request->state;
         $restaurant->phone_number = $request->phone_number;
+        $restaurant->image = $imageLink;
 
         $restaurant->save();
 
@@ -84,5 +109,34 @@ class RestaurantController extends Controller
         $restaurants = Restaurant::all();
 
         return response($restaurants, 200);
+    }
+
+    public function test(Request $request) {
+
+        if (!$request->hasFile('image')) {
+            return response('image-required', 400);
+        }
+
+        if (!$request->file('image')->isValid()) {
+            return response('invalid-image', 400);
+        }
+
+        $file = $request->file('image');
+        $file_path = $file->getPathName();
+
+        $client = new \GuzzleHttp\Client();
+        $response = $client->request('POST', 'https://api.imgur.com/3/image', [
+            'headers' => [
+                'authorization' => 'Client-ID ' . '12b39ff7d6488d1',
+                'content-type' => 'application/x-www-form-urlencoded'
+            ],
+            'form_params' => [
+                'image' => base64_encode(file_get_contents($request->file('image')->path($file_path)))
+            ]
+        ]);
+
+        $imageLink = data_get(response()->json(json_decode(($response->getBody()->getContents())))->getData(), 'data.link');
+
+        return response($imageLink, 200);
     }
 }
