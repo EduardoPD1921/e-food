@@ -24,7 +24,7 @@ class CreateRestaurantsTable extends Migration
             $table->string('city');
             $table->string('state');
             $table->string('phone_number');
-            $table->text('image');
+            $table->text('image')->nullable();
             $table->text('payment_method')->nullable();
             $table->string('shipping_time')->nullable();
             $table->string('average_price')->nullable();
