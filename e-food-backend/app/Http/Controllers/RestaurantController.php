@@ -80,32 +80,7 @@ class RestaurantController extends Controller
         return response($restaurants, 200);
     }
 
-    // public function test(Request $request) {
-
-    //     if (!$request->hasFile('image')) {
-    //         return response('image-required', 400);
-    //     }
-
-    //     if (!$request->file('image')->isValid()) {
-    //         return response('invalid-image', 400);
-    //     }
-
-    //     $file = $request->file('image');
-    //     $file_path = $file->getPathName();
-
-    //     $client = new \GuzzleHttp\Client();
-    //     $response = $client->request('POST', 'https://api.imgur.com/3/image', [
-    //         'headers' => [
-    //             'authorization' => 'Client-ID ' . '12b39ff7d6488d1',
-    //             'content-type' => 'application/x-www-form-urlencoded'
-    //         ],
-    //         'form_params' => [
-    //             'image' => base64_encode(file_get_contents($request->file('image')->path($file_path)))
-    //         ]
-    //     ]);
-
-    //     $imageLink = data_get(response()->json(json_decode(($response->getBody()->getContents())))->getData(), 'data.link');
-
-    //     return response($imageLink, 200);
-    // }
+    public function getProfileInfo(Request $request) {
+        return $request->user();
+    }
 }
