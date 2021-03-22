@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
 
 use App\Models\Restaurant;
+use Exception;
 
 class RestaurantController extends Controller
 {
@@ -74,14 +75,15 @@ class RestaurantController extends Controller
     }
 
     public function update(Request $request) {
-        $validator = Validator::make($request->all(), [
-            'email' => 'required|email',
+        $data = $request->all();
+
+        $validator = Validator::make($data, [
             'name' => 'required|string',
             'street' => 'required|string',
             'number' => 'required|integer',
             'city' => 'required|string',
             'state' => 'required|string',
-            'phone' => 'required|string'
+            'phone_number' => 'required|string'
         ]);
 
         if ($validator->fails()) {
@@ -90,10 +92,12 @@ class RestaurantController extends Controller
             return response($error, 400);
         }
 
-        $restaurant = Restaurant::where('id', $request->user()->id)->first();
+        try {
+            Restaurant::findOrFail($request->user()->id)->update($data);
 
-        if (!$restaurant) {
-            return response('user-inexistent', 400);
+            return response('account-updated', 200);
+        } catch(Exception $ex) {
+            return response('unauthenticated-account', 401);
         }
     }
 

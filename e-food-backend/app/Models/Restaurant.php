@@ -15,4 +15,7 @@ class Restaurant extends Model
     protected $hidden = [
         'password'
     ];
+
+    // protected $guarded = [];
+    protected $fillable = ['name', 'street', 'number', 'city', 'state', 'phone_number'];
 }
