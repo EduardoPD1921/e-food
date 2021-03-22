@@ -26,6 +26,7 @@ Route::group(['middleware' => 'auth:sanctum'], function() {
     // Protected URL's
     Route::get('/user/all', [UserController::class, 'returnAllUsers']);
     Route::get('/restaurant/getProfileInfo', [RestaurantController::class, 'getProfileInfo']);
+    Route::put('/restaurant/updateProfile', [RestaurantController::class, 'update']);
 });
 
 // UserController

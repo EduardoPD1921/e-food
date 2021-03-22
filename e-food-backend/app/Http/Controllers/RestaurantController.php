@@ -73,6 +73,30 @@ class RestaurantController extends Controller
         return response($response, 201);
     }
 
+    public function update(Request $request) {
+        $validator = Validator::make($request->all(), [
+            'email' => 'required|email',
+            'name' => 'required|string',
+            'street' => 'required|string',
+            'number' => 'required|integer',
+            'city' => 'required|string',
+            'state' => 'required|string',
+            'phone' => 'required|string'
+        ]);
+
+        if ($validator->fails()) {
+            $error = $validator->errors();
+
+            return response($error, 400);
+        }
+
+        $restaurant = Restaurant::where('id', $request->user()->id)->first();
+
+        if (!$restaurant) {
+            return response('user-inexistent', 400);
+        }
+    }
+
     public function allRestaurants() {
         
         $restaurants = Restaurant::all();
