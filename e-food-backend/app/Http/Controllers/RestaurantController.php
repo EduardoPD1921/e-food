@@ -103,7 +103,8 @@ class RestaurantController extends Controller
 
     public function updateEmail(Request $request) {
         $validator = Validator::make($request->all(), [
-            'email' => 'required|email'
+            'lastEmail' => 'required|email',
+            'newEmail' => 'required|email'
         ]);
 
         if ($validator->fails()) {
@@ -112,9 +113,16 @@ class RestaurantController extends Controller
             return response($error, 400);
         }
 
-        $email = $request->email;
+        $lastEmail = $request->lastEmail;
+        $newEmail = $request->newEmail;
 
-        $checkEmail = Restaurant::where('email', $email)->first();
+        $restaurant = Restaurant::findOrFail($request->user()->id);
+
+        if ($restaurant->email !== $lastEmail) {
+            return response('wrong-last-email', 400);
+        }
+
+        $checkEmail = Restaurant::where('email', $newEmail)->first();
 
         if ($checkEmail) {
             if ($checkEmail->id === $request->user()->id) {
@@ -124,9 +132,7 @@ class RestaurantController extends Controller
             return response('email-has-already-been-taken', 400);
         }
 
-        $restaurant = Restaurant::findOrFail($request->user()->id);
-
-        $restaurant->email = $email;
+        $restaurant->email = $newEmail;
         $restaurant->save();
 
         return response('email-changed-successfully', 200);
