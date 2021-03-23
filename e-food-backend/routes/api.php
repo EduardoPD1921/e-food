@@ -28,6 +28,7 @@ Route::group(['middleware' => 'auth:sanctum'], function() {
     Route::get('/restaurant/getProfileInfo', [RestaurantController::class, 'getProfileInfo']);
     Route::put('/restaurant/updateProfile', [RestaurantController::class, 'update']);
     Route::put('/restaurant/updateEmail', [RestaurantController::class, 'updateEmail']);
+    Route::put('/restaurant/updatePassword', [RestaurantController::class, 'updatePassword']);
 });
 
 // UserController

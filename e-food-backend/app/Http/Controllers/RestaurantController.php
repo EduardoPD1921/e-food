@@ -138,6 +138,33 @@ class RestaurantController extends Controller
         return response('email-changed-successfully', 200);
     }
 
+    public function updatePassword(Request $request) {
+        $validator = Validator::make($request->all(), [
+            'lastPassword' => 'required|string',
+            'newPassword' => 'required|string'
+        ]);
+
+        if ($validator->fails()) {
+            $error = $validator->errors();
+
+            return response($error, 400);
+        }
+
+        $lastPassword = $request->lastPassword;
+        $newPassword = $request->newPassword;
+
+        $restaurant = Restaurant::findOrFail($request->user()->id);
+
+        if (!Hash::check($lastPassword, $restaurant->password)) {
+            return response('wrong-last-password', 400);
+        }
+
+        $restaurant->password = Hash::make($newPassword);
+        $restaurant->save();
+
+        return response('password-changed-successfully', 200);
+    }
+
     public function allRestaurants() {
         
         $restaurants = Restaurant::all();
