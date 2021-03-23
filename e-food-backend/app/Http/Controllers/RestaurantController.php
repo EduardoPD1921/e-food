@@ -101,6 +101,37 @@ class RestaurantController extends Controller
         }
     }
 
+    public function updateEmail(Request $request) {
+        $validator = Validator::make($request->all(), [
+            'email' => 'required|email'
+        ]);
+
+        if ($validator->fails()) {
+            $error = $validator->errors();
+
+            return response($error, 400);
+        }
+
+        $email = $request->email;
+
+        $checkEmail = Restaurant::where('email', $email)->first();
+
+        if ($checkEmail) {
+            if ($checkEmail->id === $request->user()->id) {
+                return response('this-email-is-already-yours', 400);
+            }
+
+            return response('email-has-already-been-taken', 400);
+        }
+
+        $restaurant = Restaurant::findOrFail($request->user()->id);
+
+        $restaurant->email = $email;
+        $restaurant->save();
+
+        return response('email-changed-successfully', 200);
+    }
+
     public function allRestaurants() {
         
         $restaurants = Restaurant::all();
